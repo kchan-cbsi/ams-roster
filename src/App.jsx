@@ -3,13 +3,15 @@ import UserInput from "./components/UserInput.jsx";
 import {useState} from "react";
 
 export default function App() {
-    const generateRandomInt = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1));
+    const getRandomIntInclusive = (min, max) => {
+        const minCeiled = Math.ceil(min);
+        const maxFloored = Math.floor(max);
+        return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled) / max; // The maximum is inclusive and the minimum is inclusive
     }
 
     const [userInput, setUserInput] = useState({
-        raceSkill: generateRandomInt(880, 1000),
-        qualifyingSkill: generateRandomInt(880, 1000)
+        raceSkill: getRandomIntInclusive(880, 1000),
+        qualifyingSkill: getRandomIntInclusive(880, 1000)
 
     })
 
